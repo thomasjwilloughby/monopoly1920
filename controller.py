@@ -58,7 +58,7 @@ class Controller(observer.Observer):
         ev = round(ev, 2)
         observer.Event("update_state", f"Expected value: {ev}")
 
-        #player = self._gameboard.get_current_player()
+        player = self._gameboard.get_current_player()
         # add the expected value to the player's luck
         player.luck += ev
 
