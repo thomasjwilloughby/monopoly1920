@@ -109,7 +109,11 @@ class GameBoard:
 
     # Convert to an list of dictionary for transmition in an event
     def to_dicts(self):
-        return [player.to_dict() for player in ([self.__current_player] + self.__players)]
+        players = [self.__current_player] + self.__players
+        player_dicts = [player.to_dict() for player in players]
+        for p in player_dicts:
+            p['pos'] = self.__properties[p['pos']].name
+        return player_dicts
 
     def __str__(self):
         board_str = "player - cash - net worth - position\n"
