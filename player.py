@@ -30,7 +30,8 @@ class Player:
             "money": self.__money,
             "net_worth": self.net_worth(),
             "backrupt": self.__bankrupt_declared,
-            "luck": self.__luck
+            "luck": self.__luck,
+            "pos": self.__board_position,
         }
 
     def __str__(self):

@@ -121,6 +121,7 @@ class View (observer.Observer):
         lables.append(ttk.Label(f, text="Money:  "))
         lables.append(ttk.Label(f, text="Net Worth:  "))
         lables.append(ttk.Label(f, text="Luck:  "))
+        lables.append(ttk.Label(f, text="Position:  "))
 
         for l in lables:
             l.pack(side='top', anchor='w')
@@ -229,6 +230,7 @@ class View (observer.Observer):
             card[1][1].configure(text=f"Money: {p['money']}")
             card[1][2].configure(text=f"Net Worth: {p['net_worth']}")
             card[1][3].configure(text=f"Luck: {p['luck']}")
+            card[1][4].configure(text=f"Position: {p['pos']}")
 
     def _choose(self, choices):
         #good idea disable all buttons
