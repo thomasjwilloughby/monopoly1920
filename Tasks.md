@@ -16,4 +16,4 @@
 - Dict instead of str + player card lables (approx 45 mins)
 - Display Player position (approx 10 minutes)
 - Display images ontop of board (preperation for player pieces) + UI reorganization (approx 1hr)
-
+- Get player icons (aprox 25 minutes)
