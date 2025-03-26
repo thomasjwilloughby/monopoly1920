@@ -15,4 +15,5 @@
 - Start Of Player info panel (MR/25/2025) (approx 30 mins)
 - Dict instead of str + player card lables (approx 45 mins)
 - Display Player position (approx 10 minutes)
+- Display images ontop of board (preperation for player pieces) + UI reorganization (approx 1hr)
 
