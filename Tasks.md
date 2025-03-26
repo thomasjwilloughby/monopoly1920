@@ -13,5 +13,5 @@
 
 - Task Idea planning (approx 25 minutes)
 - Start Of Player info panel (MR/25/2025) (approx 30 mins)
-- Dict instead of str + player card lables (approx 30 mins)
+- Dict instead of str + player card lables (approx 45 mins)
 
