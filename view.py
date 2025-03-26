@@ -61,10 +61,16 @@ class View (observer.Observer):
     def _create_middle_frame(self):
         """Create the middle frame of the GUI"""
         middle_frame = ttk.Frame(self.main_frame, padding=10)
-        board_image = tk.PhotoImage(file=r"resources/images/monopoly.png")
-        board = ttk.Label(middle_frame, image=board_image)
-        board.pack(side='left', anchor='n', padx=75)
-        board.image = board_image
+        self.board_image = tk.PhotoImage(file=r"resources/images/monopoly.png")
+
+        canvas = tk.Canvas(middle_frame,width=400,height=400,background='black')
+        canvas.pack(side='left')
+
+        self.piece_images = []
+        self.piece_images.append(tk.PhotoImage(file=r"resources/images/pieces/test.png"))
+        self.canvas_images = {}
+        self.canvas_images['background'] = canvas.create_image(200,200,image=self.board_image)
+        self.canvas_images['test_piece'] = canvas.create_image(0,0,image=self.piece_images[0],anchor='nw')
 
         # preload all the images for the board squares
         self._preload_images()
