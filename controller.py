@@ -27,7 +27,7 @@ class Controller(observer.Observer):
         self.__roll_count = 0
 
         observer.Event("update_state", f"{self._gameboard.get_current_player().name}'s turn")
-        observer.Event("update_state_box", str(self._gameboard))
+        observer.Event("update_state_box", self._gameboard.to_dicts())
 
         self._set_expected_val()
 
@@ -122,7 +122,7 @@ class Controller(observer.Observer):
         self.__dice_rolled = False
         self.__roll_count = 0
         player_name = self._gameboard.next_turn()
-        observer.Event("update_state_box", str(self._gameboard))
+        observer.Event("update_state_box", self._gameboard.to_dicts())
         observer.Event("update_card", self._gameboard.get_current_player().position)
         callback()
         observer.Event("update_state", f"{player_name}'s turn")
@@ -145,7 +145,7 @@ class Controller(observer.Observer):
         else:
             observer.Event("update_state",f"Square not bought: {square}" )
 
-        observer.Event("update_state_box", str(self._gameboard))
+        observer.Event("update_state_box", self._gameboard.to_dicts())
 
     def _mortgage(self, data):
         """Player has indicated an interest in mortgaging a property
@@ -154,7 +154,7 @@ class Controller(observer.Observer):
         deeds = player.properties
         # only return the deeds that can be mortgaged
         observer.Event("choice", [d.name for d in deeds if not d.is_mortgaged])
-        observer.Event("update_state_box", str(self._gameboard))
+        observer.Event("update_state_box", self._gameboard.to_dicts())
 
 
     def _mortgage_specific(self, deed_name):
@@ -175,7 +175,7 @@ class Controller(observer.Observer):
         deed_name = player.unmortgage_property()
         if deed_name != "":
             observer.Event("update_state", f"Unmortgaged: {deed_name}")
-            observer.Event("update_state_box", str(self._gameboard))
+            observer.Event("update_state_box", self._gameboard.to_dicts())
 
 
     def button_clicked(self, button):
@@ -195,7 +195,7 @@ class Controller(observer.Observer):
         msg = f"{player.name} landed on {square}."
 
         observer.Event("update_state", msg)
-        observer.Event("update_state_box", str(self._gameboard))
+        observer.Event("update_state_box", self._gameboard.to_dicts())
         observer.Event("update_card", player.position)
 
 
