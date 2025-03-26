@@ -134,7 +134,6 @@ class View (observer.Observer):
         self.player_cards.append(self._create_player_card(players))
         self.player_cards.append(self._create_player_card(players))
         self.player_cards.append(self._create_player_card(players))
-        self.player_cards.append(self._create_player_card(players))
 
         for (p, _) in self.player_cards:
             p.pack(side='left', fill='both', padx=(5,5))
