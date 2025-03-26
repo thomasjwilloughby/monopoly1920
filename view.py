@@ -17,8 +17,8 @@ def get_board_square_images():
 
 class View (observer.Observer):
     """Class to create the GUI for the Monopoly game"""
-    width = 1280
-    height = 720
+    width = 1920-100
+    height = 1080-100
 
     def __init__(self, root):
         super().__init__()
@@ -32,7 +32,7 @@ class View (observer.Observer):
         #self.controller = controller
 
         root.geometry(f'{self.width}x{self.height}')
-        root.resizable(False, False)
+        root.resizable(True, True)
 
         self.main_frame = ttk.Frame(root, padding=10, relief='groove')
 
@@ -279,7 +279,7 @@ if __name__ == '__main__':
     players_in_jail_collect = True
     property_auctions = False
     root = tk.Tk()
-
+    root.minsize(1280,720)
     controller = controller.Controller(root)
 
     root.mainloop()
