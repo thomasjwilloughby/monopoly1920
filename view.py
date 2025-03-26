@@ -61,7 +61,7 @@ class View (observer.Observer):
     def _create_middle_frame(self):
         """Create the middle frame of the GUI"""
         middle_frame = ttk.Frame(self.main_frame, padding=10)
-        self.board_image = tk.PhotoImage(file=r"resources/images/monopoly.png").zoom(2)
+        self.board_image = tk.PhotoImage(file=r"resources/images/monopoly2.png")
 
         canvas = tk.Canvas(middle_frame,width=800,height=800,background='black')
         canvas.pack(side='left')
