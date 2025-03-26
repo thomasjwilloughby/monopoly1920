@@ -52,7 +52,7 @@ class View (observer.Observer):
 
     def _add_listeners(self):
         """Add listeners to the view"""
-        self.observe("update_state_box", self.update_state_box)
+        self.observe("update_players_state", self.update_players_state)
         self.observe("update_card", self.update_card)
         self.observe("update_state", self._update_text)
         self.observe("choice", self._choose)
@@ -219,7 +219,7 @@ class View (observer.Observer):
         self.text_box.insert(tk.END, text+"\n")
 
 
-    def update_state_box(self, update=[]):
+    def update_players_state(self, update=[]):
         # self.state_box.delete(1.0, tk.END)
         # self.state_box.insert(tk.END, text)
         if not update:
