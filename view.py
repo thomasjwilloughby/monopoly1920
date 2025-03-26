@@ -114,24 +114,29 @@ class View (observer.Observer):
 
         return middle_frame
 
-    def _create_player_card(self, frame: ttk.LabelFrame) -> ttk.Frame:
-        f = ttk.Frame(frame, padding=10, relief='raised', borderwidth = 3) 
-        c = ttk.Label(f, text="ABCD"[len(self.player_cards)],width=15)
-        c.pack(side='left', fill='both')
+    def _create_player_card(self, frame: ttk.LabelFrame) -> tuple[ttk.Frame, list[ttk.Label]]:
+        f = ttk.Frame(frame, padding=10, relief='raised', borderwidth = 3)
+        lables = []
+        lables.append(ttk.Label(f, text="Name:  ", width=15))
+        lables.append(ttk.Label(f, text="Money:  "))
+        lables.append(ttk.Label(f, text="Net Worth:  "))
+        lables.append(ttk.Label(f, text="Luck:  "))
 
-        return f
+        for l in lables:
+            l.pack(side='top', anchor='w')
 
+        return (f, lables)
 
-    def _create_players_frame(self, parent: ttk.Frame) -> ttk.Frame:
+    def _create_players_frame(self, parent: ttk.Frame) -> ttk.LabelFrame:
         players = ttk.LabelFrame(parent, text="Player", padding=10, relief='raised', borderwidth = 3) 
 
-        self.player_cards: list[ttk.Frame] = []
+        self.player_cards: list[tuple[ttk.Frame, list[ttk.Label]]] = []
         self.player_cards.append(self._create_player_card(players))
         self.player_cards.append(self._create_player_card(players))
         self.player_cards.append(self._create_player_card(players))
         self.player_cards.append(self._create_player_card(players))
 
-        for p in self.player_cards:
+        for (p, _) in self.player_cards:
             p.pack(side='left', fill='both', padx=(5,5))
 
         return players
