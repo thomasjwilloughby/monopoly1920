@@ -23,6 +23,16 @@ class Player:
         #add a Data structure to track mortgaging order
         self.__mortgaging_order = []
 
+    def to_dict(self):
+        """Dictionary representation of the player"""
+        return {
+            "name": self.__name,
+            "money": self.__money,
+            "net_worth": self.net_worth(),
+            "backrupt": self.__bankrupt_declared,
+            "luck": self.__luck
+        }
+
     def __str__(self):
         """String representation of the player"""
         return f"{self.__name} - {self.money} - {self.net_worth()} luck:{self.__luck:.1f}"
