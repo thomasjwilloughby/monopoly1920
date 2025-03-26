@@ -219,11 +219,17 @@ class View (observer.Observer):
         self.text_box.insert(tk.END, text+"\n")
 
 
-    # TODO: Reimplment
-    def update_state_box(self, text=""):
+    def update_state_box(self, update=[]):
         # self.state_box.delete(1.0, tk.END)
         # self.state_box.insert(tk.END, text)
-        pass
+        if not update:
+            return
+        for (i, p) in enumerate(update):
+            card = self.player_cards[i]
+            card[1][0].configure(text=f"Name: {p['name']}")
+            card[1][1].configure(text=f"Money: {p['money']}")
+            card[1][2].configure(text=f"Net Worth: {p['net_worth']}")
+            card[1][3].configure(text=f"Luck: {p['luck']}")
 
     def _choose(self, choices):
         #good idea disable all buttons
