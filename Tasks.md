@@ -1,7 +1,7 @@
 # Task Ideas
 
 - [ ] Improve UI
-    - [ ] Replace text-boxes with proper info displays
+    - [x] Replace text-boxes with proper info displays
         - [ ] More clear indication of turn
     - [ ] Display player icons on board
 - [ ] Menu
