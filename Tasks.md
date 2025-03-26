@@ -12,3 +12,4 @@
 # Time
 
 - Task Idea planning (approx 25 minutes)
+- Start Of Player info panel (MR/25/2025) (approx 30 mins)

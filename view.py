@@ -35,12 +35,12 @@ class View (observer.Observer):
         self.main_frame = ttk.Frame(root, padding=10, relief='groove')
 
         #create the frames
-        logo_frame = self._create_logo_frame()
+        # logo_frame = self._create_logo_frame()
         middle_frame = self._create_middle_frame()
         msg_frame = self._create_msg_frame()
 
         #pack the frames
-        logo_frame.pack(fill=tk.BOTH, expand=True)
+        # logo_frame.pack(fill=tk.BOTH, expand=True)
         middle_frame.pack(fill=tk.BOTH, expand=False)
         msg_frame.pack(fill=tk.BOTH, expand=True)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
@@ -112,15 +112,39 @@ class View (observer.Observer):
 
         return middle_frame
 
+    def _create_player_card(self, frame: ttk.LabelFrame) -> ttk.Frame:
+        f = ttk.Frame(frame, padding=10, relief='raised', borderwidth = 3) 
+        c = ttk.Label(f, text="ABCD"[len(self.player_cards)],width=15)
+        c.pack(side='left', fill='both')
+
+        return f
+
+
+    def _create_players_frame(self, parent: ttk.Frame) -> ttk.Frame:
+        players = ttk.LabelFrame(parent, text="Player", padding=10, relief='raised', borderwidth = 3) 
+
+        self.player_cards: list[ttk.Frame] = []
+        self.player_cards.append(self._create_player_card(players))
+        self.player_cards.append(self._create_player_card(players))
+        self.player_cards.append(self._create_player_card(players))
+        self.player_cards.append(self._create_player_card(players))
+
+        for p in self.player_cards:
+            p.pack(side='left', fill='both', padx=(5,5))
+
+        return players
+
     def _create_msg_frame(self):
         """Create the frame at the bottom of the screen to display messages"""
         msg_frame = ttk.Frame(self.main_frame, padding=10, relief='raised', borderwidth=3)
 
-        self.state_box = tk.Text(msg_frame, width=60, height=10, background='black', foreground='white')
-        self.state_box.pack(side='left', padx=(100,30))
+        # self.state_box = tk.Text(msg_frame, width=60, height=10, background='black', foreground='white')
+        # self.state_box.pack(side='left', padx=(100,30))
+        self.player_frame = self._create_players_frame(msg_frame)
+        self.player_frame.pack(side='left', padx=(10,10), fill='both')
 
         self.text_box = tk.Text(msg_frame, width=60, height=10, background='black', foreground='white')
-        self.text_box.pack(side='left', padx=(30,100))
+        self.text_box.pack(side='right', padx=(30,100))
 
         return msg_frame
 
@@ -187,9 +211,12 @@ class View (observer.Observer):
         #self.text_box.delete(1.0, tk.END)
         self.text_box.insert(tk.END, text+"\n")
 
+
+    # TODO: Reimplment
     def update_state_box(self, text=""):
-        self.state_box.delete(1.0, tk.END)
-        self.state_box.insert(tk.END, text)
+        # self.state_box.delete(1.0, tk.END)
+        # self.state_box.insert(tk.END, text)
+        pass
 
     def _choose(self, choices):
         #good idea disable all buttons
