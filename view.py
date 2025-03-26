@@ -43,8 +43,8 @@ class View (observer.Observer):
 
         #pack the frames
         # logo_frame.pack(fill=tk.BOTH, expand=True)
-        middle_frame.pack(fill=tk.BOTH, expand=False)
-        msg_frame.pack(fill=tk.BOTH, expand=True)
+        middle_frame.pack(side='left',fill=tk.BOTH, expand=False)
+        msg_frame.pack(side='right',fill=tk.BOTH, expand=True)
         self.main_frame.pack(fill=tk.BOTH, expand=True)
         self._add_listeners()
 
@@ -61,24 +61,26 @@ class View (observer.Observer):
     def _create_middle_frame(self):
         """Create the middle frame of the GUI"""
         middle_frame = ttk.Frame(self.main_frame, padding=10)
-        self.board_image = tk.PhotoImage(file=r"resources/images/monopoly.png")
+        self.board_image = tk.PhotoImage(file=r"resources/images/monopoly.png").zoom(2)
 
-        canvas = tk.Canvas(middle_frame,width=400,height=400,background='black')
+        canvas = tk.Canvas(middle_frame,width=800,height=800,background='black')
         canvas.pack(side='left')
 
         self.piece_images = []
         self.piece_images.append(tk.PhotoImage(file=r"resources/images/pieces/test.png"))
         self.canvas_images = {}
-        self.canvas_images['background'] = canvas.create_image(200,200,image=self.board_image)
+
+        self.canvas_images['background'] = canvas.create_image(401,401,image=self.board_image)
         self.canvas_images['test_piece'] = canvas.create_image(0,0,image=self.piece_images[0],anchor='nw')
 
         # preload all the images for the board squares
         self._preload_images()
 
+        f = ttk.Frame(middle_frame, borderwidth=0)
         card_image = self.images[0]
-        self.card = ttk.Label(middle_frame, image=card_image)
+        self.card = ttk.Label(f, image=card_image)
 
-        button_frame = ttk.Frame(middle_frame, padding=10)
+        button_frame = ttk.Frame(f, padding=10)
 
         #create buttons
         self.mid_buttons = []
@@ -111,9 +113,12 @@ class View (observer.Observer):
         self.end_turn_button.state(['active'])
         self.mid_buttons.append(self.end_turn_button)
 
-        button_frame.pack(side='left', anchor='center', pady=(0, 0), padx=50)
 
-        self.card.pack(side='left', anchor='n', padx=100, pady=(100, 0))
+        button_frame.pack(side='top', anchor='center', pady=(0, 0), padx=(5,5))
+
+        self.card.pack(side='bottom', anchor='n', padx=100, pady=(100, 0))
+        f.pack(side='right')
+
         self.card.image = card_image
 
 
@@ -143,7 +148,7 @@ class View (observer.Observer):
         self.player_cards.append(self._create_player_card(players))
 
         for (p, _) in self.player_cards:
-            p.pack(side='left', fill='both', padx=(5,5))
+            p.pack(side='top', fill='both', padx=(5,5), pady=(5,5))
 
         return players
 
@@ -154,10 +159,10 @@ class View (observer.Observer):
         # self.state_box = tk.Text(msg_frame, width=60, height=10, background='black', foreground='white')
         # self.state_box.pack(side='left', padx=(100,30))
         self.player_frame = self._create_players_frame(msg_frame)
-        self.player_frame.pack(side='left', padx=(10,10), fill='both')
+        self.player_frame.pack(side='top', padx=(10,10), fill='both')
 
         self.text_box = tk.Text(msg_frame, width=60, height=10, background='black', foreground='white')
-        self.text_box.pack(side='right', padx=(30,100))
+        self.text_box.pack(side='bottom', padx=(10,10))
 
         return msg_frame
 
