@@ -144,7 +144,7 @@ class View (observer.Observer):
         return (f, lables)
 
     def _create_players_frame(self, parent: ttk.Frame) -> ttk.LabelFrame:
-        players = ttk.LabelFrame(parent, text="Player", padding=10, relief='raised', borderwidth = 3) 
+        players = ttk.LabelFrame(parent, text="Players", padding=10, relief='raised', borderwidth = 3) 
 
         self.player_cards: list[tuple[ttk.Frame, list[ttk.Label]]] = []
         self.player_cards.append(self._create_player_card(players))
