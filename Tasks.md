@@ -18,3 +18,4 @@
 - Display images ontop of board (preperation for player pieces) + UI reorganization (approx 1hr)
 - Get player icons (aprox 25 minutes)
 - Current player highlight (approx 15 mins)
+- Remove Piece backgrounds (approx 10 mins)
