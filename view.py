@@ -75,7 +75,7 @@ class View (observer.Observer):
         self.canvas_images = {}
 
         self.canvas_images['background'] = canvas.create_image(401,401,image=self.board_image)
-        self.canvas_images['test_piece'] = canvas.create_image(0,0,image=self.piece_images[0],anchor='nw')
+        # self.canvas_images['test_piece'] = canvas.create_image(0,0,image=self.piece_images[0],anchor='nw')
 
         # preload all the images for the board squares
         self._preload_images()
