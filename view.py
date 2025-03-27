@@ -48,6 +48,10 @@ class View (observer.Observer):
         self.main_frame.pack(fill=tk.BOTH, expand=True)
         self._add_listeners()
 
+        self.current_player_style = ttk.Style()
+        self.current_player_style.configure('ActivePlayer.TFrame', background='#ABCBFF')
+        self.current_player_style.configure('ActivePlayer.TLabel', background='#ABCBFF')
+
         #self.setup_game()
 
     def _add_listeners(self):
@@ -237,6 +241,12 @@ class View (observer.Observer):
             return
         for (i, p) in enumerate(update):
             card = self.player_cards[i]
+
+            if i == 0:
+                card[0].configure(style='ActivePlayer.TFrame')
+                for lable in card[1]:
+                    lable.configure(style='ActivePlayer.TLabel')
+
             card[1][0].configure(text=f"Name: {p['name']}")
             card[1][1].configure(text=f"Money: {p['money']}")
             card[1][2].configure(text=f"Net Worth: {p['net_worth']}")
