@@ -294,7 +294,7 @@ if __name__ == '__main__':
     players_in_jail_collect = True
     property_auctions = False
     root = tk.Tk()
-    root.minsize(1280,720)
+    root.minsize(1500,900)
     controller = controller.Controller(root)
 
     root.mainloop()
