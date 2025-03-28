@@ -6,6 +6,10 @@ from tkinter import ttk
 import controller
 import observer
 
+import PIL.Image
+import PIL.ImageTk
+import PIL
+
 
 def get_board_square_images():
     """return a List of all the file paths for the board square images"""
@@ -69,21 +73,20 @@ class View (observer.Observer):
 
     def _create_middle_frame(self):
         """Create the middle frame of the GUI"""
+        self._preload_images()
+
         middle_frame = ttk.Frame(self.main_frame, padding=10)
         self.board_image = tk.PhotoImage(file=r"resources/images/monopoly2.png")
 
         canvas = tk.Canvas(middle_frame,width=800,height=800,background='black')
         canvas.pack(side='left')
 
-        self.piece_images = []
-        self.piece_images.append(tk.PhotoImage(file=r"resources/images/pieces/test.png"))
         self.canvas_images = {}
 
         self.canvas_images['background'] = canvas.create_image(401,401,image=self.board_image)
-        # self.canvas_images['test_piece'] = canvas.create_image(0,0,image=self.piece_images[0],anchor='nw')
+        self.canvas_images['test_piece'] = canvas.create_image(0,0,image=self.piece_images[2],anchor='nw')
 
         # preload all the images for the board squares
-        self._preload_images()
 
         f = ttk.Frame(middle_frame, borderwidth=0)
         card_image = self.square_images[0]
@@ -294,8 +297,10 @@ class View (observer.Observer):
         
         piece_images = get_player_piece_images()
         for image in piece_images:
-            img = tk.PhotoImage(file=image)
-            self.piece_images.append(img)
+            img = PIL.Image.open(image)
+            img.thumbnail((40,40), PIL.Image.Resampling.LANCZOS)
+
+            self.piece_images.append(PIL.ImageTk.PhotoImage(img))
 
 '''launch the GUI'''
 if __name__ == '__main__':
