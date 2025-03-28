@@ -20,3 +20,4 @@
 - Current player highlight (approx 15 mins)
 - Remove Piece backgrounds (approx 10 mins)
 - Load Piece images (approx 15 minutes)
+- Display player pieces (approx 1h15)
