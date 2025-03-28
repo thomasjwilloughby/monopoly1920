@@ -242,18 +242,23 @@ class View (observer.Observer):
         self.text_box.insert(tk.END, text+"\n")
 
 
-    def update_players_state(self, update=[]):
+    def update_players_state(self, update: list[dict]):
         # self.state_box.delete(1.0, tk.END)
         # self.state_box.insert(tk.END, text)
+        update.sort(key=lambda u: u['id'])
         if not update:
             return
         for (i, p) in enumerate(update):
             card = self.player_cards[i]
 
-            if i == 0:
+            if p['is_current_player']:
                 card[0].configure(style='ActivePlayer.TFrame')
                 for lable in card[1]:
                     lable.configure(style='ActivePlayer.TLabel')
+            else:
+                card[0].configure(style='TFrame')
+                for lable in card[1]:
+                    lable.configure(style='TLabel')
 
             card[1][0].configure(text=f"Name: {p['name']}")
             card[1][1].configure(text=f"Money: {p['money']}")

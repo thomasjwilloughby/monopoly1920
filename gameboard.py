@@ -111,7 +111,11 @@ class GameBoard:
     def to_dicts(self):
         players = [self.__current_player] + self.__players
         player_dicts = [player.to_dict() for player in players]
-        for p in player_dicts:
+        for (i, p) in enumerate(player_dicts):
+            if i == 0:
+                p['is_current_player'] = True
+            else:
+                p['is_current_player'] = False
             p['pos'] = self.__properties[p['pos']].name
         return player_dicts
 
