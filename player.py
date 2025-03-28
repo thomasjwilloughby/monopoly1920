@@ -6,8 +6,9 @@ import observer
 class Player:
     """Player class to represent a player in the game"""
 
-    def __init__(self, name, money):
+    def __init__(self, id, name, money):
         """Constructor for the Player class"""
+        self.__id = id
         self.__name = name
         self.__money = money
         self.__properties = []
@@ -26,6 +27,7 @@ class Player:
     def to_dict(self):
         """Dictionary representation of the player"""
         return {
+            "id": self.id,
             "name": self.__name,
             "money": self.__money,
             "net_worth": self.net_worth(),
@@ -105,6 +107,10 @@ class Player:
         if self.__board_position < prior_position:
             observer.Event("update_state", "pass_go +200")
             self.collect(200)
+
+    @property
+    def id(self):
+        return self.__id
 
     @property
     def doubles_count(self):
