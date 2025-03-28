@@ -80,11 +80,16 @@ class View (observer.Observer):
 
         canvas = tk.Canvas(middle_frame,width=800,height=800,background='black')
         canvas.pack(side='left')
+        self.canvas = canvas
 
         self.canvas_images = {}
 
         self.canvas_images['background'] = canvas.create_image(401,401,image=self.board_image)
-        self.canvas_images['test_piece'] = canvas.create_image(0,0,image=self.piece_images[2],anchor='nw')
+        pieces = []
+        self.canvas_images['pieces'] = pieces
+        pieces.append(canvas.create_image(0,0,image=self.piece_images[0],anchor='nw'))
+        pieces.append(canvas.create_image(0,0,image=self.piece_images[1],anchor='nw'))
+        pieces.append(canvas.create_image(0,0,image=self.piece_images[3],anchor='nw'))
 
         # preload all the images for the board squares
 
@@ -266,6 +271,17 @@ class View (observer.Observer):
             card[1][3].configure(text=f"Luck: {p['luck']}")
             card[1][4].configure(text=f"Position: {p['pos']}")
 
+        # Update player piece positions
+        positions = self._get_piece_positions([u['pos_id'] for u in update])
+        for (i, pos) in enumerate(positions):
+            img_id = self.canvas_images['pieces'][i]
+            x = int(pos[0]*800)
+            y = int(pos[1]*800)
+            print(f"Moving image to {x}x{y}")
+            self.canvas.moveto(img_id, x, y)
+            self.canvas.tag_raise(img_id)
+
+
     def _choose(self, choices):
         #good idea disable all buttons
 
@@ -291,7 +307,25 @@ class View (observer.Observer):
     def pick(self, s):
         observer.Event("mortgage_specific", s)
 
+    def _get_piece_positions(self, player_positions: list[int]) -> list[tuple[float,float]]:
+        output = []
 
+        for (i, player) in enumerate(player_positions):
+            # prev_count = player_positions[:i].count(player) # Get the count previous players at the same position
+            dist_along_edge = player % 10
+            
+            if player < 10:
+                output.append((1-dist_along_edge/10, 1))
+            elif player < 20:
+                output.append((0, 1-dist_along_edge/10))
+            elif player < 30:
+                output.append((dist_along_edge/10, 0))
+            elif player < 40:
+                output.append((1, dist_along_edge/10))
+
+        return [(x*0.85 + 0.05, y*0.85 + 0.05) for (x,y) in output]
+
+        
 
     def _preload_images(self):
         '''Function to preload all the images for the board squares'''
