@@ -15,6 +15,10 @@ def get_board_square_images():
         square_images.append(path)
     return square_images
 
+def get_player_piece_images() -> list[str]:
+    path = os.path.join("resources", "images", "pieces")
+    return [os.path.join(path, img) for img in os.listdir(path)]
+
 class View (observer.Observer):
     """Class to create the GUI for the Monopoly game"""
     width = 1920-100
@@ -24,6 +28,7 @@ class View (observer.Observer):
         super().__init__()
         # Set-up a simple window
         self.square_images = []
+        self.piece_images = []
         self.root = root
         root.title("Monopoly 1920")
 
@@ -286,6 +291,11 @@ class View (observer.Observer):
         for image in square_images:
             img = tk.PhotoImage(file=image)
             self.square_images.append(img)
+        
+        piece_images = get_player_piece_images()
+        for image in piece_images:
+            img = tk.PhotoImage(file=image)
+            self.piece_images.append(img)
 
 '''launch the GUI'''
 if __name__ == '__main__':
