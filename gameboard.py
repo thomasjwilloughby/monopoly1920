@@ -116,7 +116,8 @@ class GameBoard:
                 p['is_current_player'] = True
             else:
                 p['is_current_player'] = False
-            p['pos'] = self.__properties[p['pos']].name
+
+            p['pos'] = self.__properties[p['pos_id']].name
         return player_dicts
 
     def __str__(self):
