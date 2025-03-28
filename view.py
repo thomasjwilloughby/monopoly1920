@@ -23,7 +23,7 @@ class View (observer.Observer):
     def __init__(self, root):
         super().__init__()
         # Set-up a simple window
-        self.images = []
+        self.square_images = []
         self.root = root
         root.title("Monopoly 1920")
 
@@ -81,7 +81,7 @@ class View (observer.Observer):
         self._preload_images()
 
         f = ttk.Frame(middle_frame, borderwidth=0)
-        card_image = self.images[0]
+        card_image = self.square_images[0]
         self.card = ttk.Label(f, image=card_image)
 
         button_frame = ttk.Frame(f, padding=10)
@@ -219,7 +219,7 @@ class View (observer.Observer):
         observer.Event("purchase", None)
 
     def update_card(self, index):
-        card_image = self.images[index]
+        card_image = self.square_images[index]
         try:
             self.card['image'] = card_image
         except:
@@ -285,7 +285,7 @@ class View (observer.Observer):
         square_images = get_board_square_images()
         for image in square_images:
             img = tk.PhotoImage(file=image)
-            self.images.append(img)
+            self.square_images.append(img)
 
 '''launch the GUI'''
 if __name__ == '__main__':
