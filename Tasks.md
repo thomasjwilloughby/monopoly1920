@@ -21,3 +21,4 @@
 - Remove Piece backgrounds (approx 10 mins)
 - Load Piece images (approx 15 minutes)
 - Display player pieces (approx 1h15)
+- Pin Placer Start (approx 1h15)
