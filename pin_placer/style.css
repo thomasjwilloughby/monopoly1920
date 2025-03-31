@@ -1,0 +1,9 @@
+#canvas-wraper {
+	margin-left: auto;
+	margin-right: auto;
+	width: 800px;
+	justify-content: center;
+
+	padding-top: 50px;
+}
+
