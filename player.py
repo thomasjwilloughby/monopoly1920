@@ -109,6 +109,10 @@ class Player:
             self.collect(200)
 
     @property
+    def can_move(self):
+        return self.position != 40
+
+    @property
     def id(self):
         return self.__id
 

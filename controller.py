@@ -92,8 +92,9 @@ class Controller(observer.Observer):
         dice_sum = self._roll_dice()
         player = self._gameboard.get_current_player()
 
-        #move the player
-        player.move(dice_sum)
+        #move the player if posible
+        if player.can_move:
+            player.move(dice_sum)
         position = player.position
         square = self._gameboard.get_square(position)
 
