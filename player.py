@@ -15,8 +15,6 @@ class Player:
         self.__board_position = 0
         self.__doubles_count = 0
         self.__bankrupt_declared = False
-        self.__utility_count = 0
-        self.__railroad_count = 0
 
         #big numbers are lucky, negative numbers are unlucky
         self.__luck = 0
@@ -48,10 +46,6 @@ class Player:
         self.__properties.append(board_property)
         self.__money -= board_property.price
         board_property.owner = self
-        if board_property.is_utility:
-            self.__utility_count += 1
-        if board_property.is_railroad:
-            self.__railroad_count += 1
 
         return True
 
@@ -113,7 +107,6 @@ class Player:
         if target_position > 40:
             raise ValueError("Invalid board position")
         self.__board_position = target_position
-        
 
     @property
     def can_move(self):
@@ -164,7 +157,7 @@ class Player:
 
     @property
     def railroad_count(self):
-        return self.__railroad_count
+        return len([prop.is_railroad for prop in self.properties])
 
     @property
     def properties(self):
