@@ -46,6 +46,12 @@ class Controller(observer.Observer):
     # TODO: Implement
     def _save(self, save_name):
         """Save the game to disk"""
+
+        save_game = {}
+        save_game |= {"dice_rolled": self.__dice_rolled, "roll_count": self.__roll_count}
+        save_game |= self._gameboard.save()
+
+        # TODO: Convert dict to json and write to file
         pass
 
     # TODO: Implement

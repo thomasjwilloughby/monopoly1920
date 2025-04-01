@@ -32,6 +32,20 @@ class GameBoard:
         # set the current player
         self.__current_player = self.__players.pop(0)
 
+    def save(self) -> dict[str, list | dict | int | str]:
+        all_players = [self.__current_player] + self.__players
+        ids = [player.id for player in all_players]
+        assert len(set(ids)) == len(ids) # Ensure the isn't some how two palyer with the same id
+
+        save = {}
+        save |= {"total_turns": self.__total_turns}
+        save |= {"current_player_id": self.__current_player.id}
+
+        save |= {"players": [player.save() for player in all_players]}
+
+        return save
+
+
     def next_turn(self):
         #add the prior player to the end of the queue
         if not self.__current_player.bankrupt_declared:

@@ -22,6 +22,19 @@ class Player:
         #add a Data structure to track mortgaging order
         self.__mortgaging_order = []
 
+    def save(self) -> dict:
+        save = {}
+        save |= {"name": self.name}
+        save |= {"id": self.id}
+        save |= {"money": self.money}
+        save |= {"positiion": self.position}
+        save |= {"doubles_count": self.doubles_count}
+        save |= {"bankrupt_declared": self.bankrupt_declared}
+        save |= {"luck": self.luck}
+        save |= {"mortgage_ortder": [prop.name for prop in self.__mortgaging_order]}
+
+        return save
+
     def to_dict(self):
         """Dictionary representation of the player"""
         return {
