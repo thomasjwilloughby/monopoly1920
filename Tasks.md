@@ -4,9 +4,9 @@
     - [x] Replace text-boxes with proper info displays
         - [x] More clear indication of turn
     - [x] Display player icons on board
-- [ ] Save & Load
+- [x] Save & Load
     - [x] Dialog
-    - [ ] Actual save load
+    - [x] Actual save load
 - [ ] Menu
     - [ ] Main Menu
     - [ ] House Rules?
@@ -27,3 +27,4 @@
 - Pin Placer Start (approx 1h15)
 - Jail (approx 1hr)
 - Save Load Dialog (approx 1h30)
+- Save + load (approx 1hr)
