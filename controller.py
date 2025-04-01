@@ -98,6 +98,13 @@ class Controller(observer.Observer):
         position = player.position
         square = self._gameboard.get_square(position)
 
+        if square.space == "GoToJail":
+            print("Going to jail")
+            player.goto(40) # Teleport player to jail
+
+            position = player.position
+            square = self._gameboard.get_square(position)
+
         #pay the rent
         #should check if the player has money and if not
         #give them the chance to trade or mortgage

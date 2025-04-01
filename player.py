@@ -108,6 +108,13 @@ class Player:
             observer.Event("update_state", "pass_go +200")
             self.collect(200)
 
+    def goto(self, target_position):
+        """Function to teleport the play to the target space"""
+        if target_position > 40:
+            raise ValueError("Invalid board position")
+        self.__board_position = target_position
+        
+
     @property
     def can_move(self):
         return self.position != 40
