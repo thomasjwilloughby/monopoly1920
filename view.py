@@ -23,6 +23,13 @@ def get_player_piece_images() -> list[str]:
     path = os.path.join("resources", "images", "pieces")
     return [os.path.join(path, img) for img in os.listdir(path)]
 
+def get_save_files() -> list[str]:
+    saves_path = os.path.join("saves")
+    if not os.path.isdir(saves_path):
+        os.mkdir(saves_path)
+
+    return os.listdir(saves_path)
+
 class View (observer.Observer):
     """Class to create the GUI for the Monopoly game"""
     width = 1920-100
