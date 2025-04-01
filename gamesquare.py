@@ -89,7 +89,7 @@ class GameSquare:
         """Function to determine if a square can be purchased"""
         if self.owner is None:
             if (self.space == "Tax" or self.space == "Chance" or self.space == "Chest"
-                    or self.space == "GotoJail" or self.space == "Jail"
+                    or self.space == "GoToJail" or self.space == "Jail"
                     or self.space == "Parking" or self.space == "Go"):
                 return False
             else:
