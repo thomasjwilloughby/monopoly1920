@@ -49,7 +49,7 @@ class Controller(observer.Observer):
         """Create num_players players and return a list of them"""
         players = []
         for i in range(num_players):
-            player = plr.Player(f"Player {i}", i, 1500)
+            player = plr.Player(i, f"Player {i}", 1500)
             players.append(player)
         return players
 
