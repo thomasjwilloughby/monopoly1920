@@ -201,6 +201,14 @@ class View (observer.Observer):
 
     def _action_taken(self, action):
 
+        if action == "save":
+            print("save clicked")
+            observer.Event("save", None)
+
+        if action == "load":
+            print("save clicked")
+            observer.Event("load", None)
+
         if action == "roll":
             #tell the controller roll was clicked
             print("roll clicked")

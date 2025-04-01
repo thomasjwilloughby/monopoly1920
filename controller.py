@@ -40,6 +40,18 @@ class Controller(observer.Observer):
         self.observe("mortgage", self._mortgage)
         self.observe("mortgage_specific", self._mortgage_specific)
         self.observe("unmortgage", self._unmortgage)
+        self.observe("save", self._save)
+        self.observe("load", self._load)
+
+    # TODO: Implement
+    def _save(self, save_name):
+        """Save the game to disk"""
+        pass
+
+    # TODO: Implement
+    def _load(self, save_name):
+        """Load the game from disk"""
+        pass
 
     def _test_observers(self, data):
         """Test the observer pattern"""
