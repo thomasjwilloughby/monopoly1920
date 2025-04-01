@@ -45,6 +45,15 @@ class GameBoard:
 
         return save
 
+    def load(self, save: dict):
+        self.__total_turns = save['total_turns']
+        players = [player.load(p, self) for p in save['players']]
+        
+        current_player = players.pop(0)
+        self.__current_player = current_player
+        self.__players = players
+        
+
 
     def next_turn(self):
         #add the prior player to the end of the queue
@@ -120,6 +129,9 @@ class GameBoard:
 
         return properties
 
+    @property
+    def properties(self):
+        return self.__properties
 
     # Convert to an list of dictionary for transmition in an event
     def to_dicts(self):

@@ -3,6 +3,11 @@ import gamesquare
 import observer
 
 
+def load(save: dict, board):
+    p = Player(None, None, None)
+    p.load(save, board)
+    return p
+
 class Player:
     """Player class to represent a player in the game"""
 
@@ -27,13 +32,31 @@ class Player:
         save |= {"name": self.name}
         save |= {"id": self.id}
         save |= {"money": self.money}
-        save |= {"positiion": self.position}
+        save |= {"position": self.position}
         save |= {"doubles_count": self.doubles_count}
         save |= {"bankrupt_declared": self.bankrupt_declared}
         save |= {"luck": self.luck}
         save |= {"mortgage_ortder": [prop.name for prop in self.__mortgaging_order]}
+        save |= {"properties": [prop.name for prop in self.properties]}
 
         return save
+
+    def load(self, save, board):
+        self.__name = save['name']
+        self.__id = save['id']
+        self.__money = save['money']
+        self.__board_position = save['position']
+        self.__doubles_count = save['doubles_count']
+        self.__bankrupt_declared = save['bankrupt_declared']
+        self.__luck = save['luck']
+
+        def get_property(name):
+            for p in board.properties:
+                if p.name == name:
+                    return p
+
+        self.__mortgaging_order = [get_property(name) for name in save['mortgage_ortder']]
+        self.__properties = [get_property(name) for name in save['properties']]
 
     def to_dict(self):
         """Dictionary representation of the player"""

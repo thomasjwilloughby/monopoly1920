@@ -6,6 +6,8 @@ import player as plr # avoid naming conflict with the player module
 import gamesquare
 import observer
 
+import json
+
 class Controller(observer.Observer):
     """Control the game flow"""
 
@@ -49,16 +51,31 @@ class Controller(observer.Observer):
 
         save_game = {}
         save_game |= {"dice_rolled": self.__dice_rolled, "roll_count": self.__roll_count}
-        save_game |= self._gameboard.save()
+        save_game |= {"board": self._gameboard.save()}
 
-        # TODO: Convert dict to json and write to file
-        pass
+        save_path = os.path.join("saves", save_name+".json")
+        with open(save_path, 'w') as file:
+            json.dump(save_game, file)
 
     # TODO: Implement
     def _load(self, save_name):
         """Load the game from disk"""
-        pass
+        save_game = {}
 
+        save_path = os.path.join("saves", save_name)
+        with open(save_path, 'r') as file:
+            save_game = json.load(file)
+        
+        self.__roll_count = save_game['roll_count']
+        self.__dice_rolled = save_game['dice_rolled']
+
+        self._gameboard.load(save_game['board'])
+
+        observer.Event("update_players_state", self._gameboard.to_dicts())
+        observer.Event("update_card", self._gameboard.get_current_player().position)
+
+        
+            
     def _test_observers(self, data):
         """Test the observer pattern"""
         print("observed event roll")
