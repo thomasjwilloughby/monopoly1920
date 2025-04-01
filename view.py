@@ -178,6 +178,11 @@ class View (observer.Observer):
         self.player_frame = self._create_players_frame(msg_frame)
         self.player_frame.pack(side='top', padx=(10,10), fill='both')
 
+        self.save_button = ttk.Button(msg_frame, text="Save Game", command=lambda: self._save_game())
+        self.load_button = ttk.Button(msg_frame, text="Load Game", command=lambda: self._load_game())
+        self.save_button.pack(side='top', padx=(10,10), pady=(40,5))
+        self.load_button.pack(side='top', padx=(10,10), pady=(5,5))
+
         self.text_box = tk.Text(msg_frame, width=60, height=10, background='black', foreground='white')
         self.text_box.pack(side='bottom', padx=(10,10))
 
