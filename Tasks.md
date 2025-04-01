@@ -1,9 +1,10 @@
 # Task Ideas
 
-- [ ] Improve UI
+- [x] Improve UI
     - [x] Replace text-boxes with proper info displays
         - [x] More clear indication of turn
-    - [ ] Display player icons on board
+    - [x] Display player icons on board
+- [ ] Save & Load
 - [ ] Menu
     - [ ] Main Menu
     - [ ] House Rules?
