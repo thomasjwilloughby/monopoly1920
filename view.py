@@ -313,8 +313,9 @@ class View (observer.Observer):
         for (i, player) in enumerate(player_positions):
             # prev_count = player_positions[:i].count(player) # Get the count previous players at the same position
             dist_along_edge = player % 10
-            
-            if player < 10:
+            if player == 10: # Visiting Jail
+                output.append((-0.04,1.06))
+            elif player < 10:
                 output.append((1-dist_along_edge/10, 1))
             elif player < 20:
                 output.append((0, 1-dist_along_edge/10))
@@ -322,6 +323,10 @@ class View (observer.Observer):
                 output.append((dist_along_edge/10, 0))
             elif player < 40:
                 output.append((1, dist_along_edge/10))
+            elif player == 40: # In jail
+                output.append((0.04, 0.97))
+            else:
+                raise ValueError(f"Invalid player position {player}")
 
         return [(x*0.85 + 0.05, y*0.85 + 0.05) for (x,y) in output]
 
