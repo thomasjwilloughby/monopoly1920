@@ -333,7 +333,9 @@ class View (observer.Observer):
         for image in square_images:
             img = tk.PhotoImage(file=image)
             self.square_images.append(img)
-        
+
+        self.square_images.append(self.square_images[10]) # Use Jail square for both visiting and in jail
+
         piece_images = get_player_piece_images()
         for image in piece_images:
             img = PIL.Image.open(image)
