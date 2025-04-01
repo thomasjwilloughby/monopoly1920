@@ -5,6 +5,8 @@
         - [x] More clear indication of turn
     - [x] Display player icons on board
 - [ ] Save & Load
+    - [x] Dialog
+    - [ ] Actual save load
 - [ ] Menu
     - [ ] Main Menu
     - [ ] House Rules?
