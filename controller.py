@@ -1,5 +1,4 @@
 import os
-import view
 import random
 import gameboard
 import player as plr # avoid naming conflict with the player module
@@ -12,11 +11,7 @@ class Controller(observer.Observer):
     """Control the game flow"""
 
     def __init__(self, root):
-
-        #for now we have references to the backend and frontend objects
-        #tight coupling is not ideal, but we will refactor later
         super().__init__()
-        self._view = view.View(root)
 
         csv_path = os.path.join("resources", "data", "board.csv")
         players = self._create_players(3)

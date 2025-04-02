@@ -3,7 +3,6 @@
 import tkinter as tk
 import os
 from tkinter import ttk
-import controller
 import observer
 
 import PIL.Image
@@ -416,15 +415,4 @@ class View (observer.Observer):
 
             self.piece_images.append(PIL.ImageTk.PhotoImage(img))
 
-'''launch the GUI'''
-if __name__ == '__main__':
-
-    free_parking_payout = 0
-    players_in_jail_collect = True
-    property_auctions = False
-    root = tk.Tk()
-    root.minsize(1500,900)
-    controller = controller.Controller(root)
-
-    root.mainloop()
 
