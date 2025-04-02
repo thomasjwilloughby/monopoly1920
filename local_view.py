@@ -29,7 +29,7 @@ def get_save_files() -> list[str]:
 
     return os.listdir(saves_path)
 
-class View (observer.Observer):
+class LocalView (observer.Observer):
     """Class to create the GUI for the Monopoly game"""
     width = 1920-100
     height = 1080-100

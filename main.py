@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
 import tkinter as tk
 
-import controller
-import view
+import local_controller
+import local_view
 
 '''launch the GUI'''
 if __name__ == '__main__':
@@ -13,7 +13,7 @@ if __name__ == '__main__':
     root = tk.Tk()
     root.minsize(1500,900)
 
-    view = view.View(root)
-    controller = controller.Controller(root)
+    view = local_view.LocalView(root)
+    controller = local_controller.LocalController(root)
 
     root.mainloop()

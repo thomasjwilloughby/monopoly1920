@@ -7,7 +7,7 @@ import observer
 
 import json
 
-class Controller(observer.Observer):
+class LocalController(observer.Observer):
     """Control the game flow"""
 
     def __init__(self, root):
