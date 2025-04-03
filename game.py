@@ -19,5 +19,12 @@ class Game:
         print(f"Starting game of type '{type}'")
         self._menu = None
 
-        self._view = LocalView(self._root)
+        self._view = LocalView(self._root, self._quit_game)
         self._controler = LocalController()
+
+    def _quit_game(self):
+        print("Exiting Game")
+        self._view = None
+        self._controler = None
+
+        self._menu = MainMenu(self._root, self._start_game)

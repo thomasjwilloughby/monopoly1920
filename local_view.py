@@ -3,6 +3,8 @@
 import tkinter as tk
 import os
 from tkinter import ttk
+from tkinter import messagebox
+from typing import Callable
 import observer
 
 import PIL.Image
@@ -34,7 +36,7 @@ class LocalView (observer.Observer):
     width = 1920-100
     height = 1080-100
 
-    def __init__(self, root):
+    def __init__(self, root, quit_callback: Callable):
         super().__init__()
 
         # Clear root window
@@ -47,6 +49,8 @@ class LocalView (observer.Observer):
         self.piece_images = []
         self.root = root
         root.title("Monopoly 1920")
+
+        self._quit_callback = quit_callback
 
         #tight coupling with the controller
         #not ideal, but we will refactor later
@@ -137,6 +141,10 @@ class LocalView (observer.Observer):
         self.end_turn_button.pack(side='top', anchor='center', pady=(10, 10))
         self.mid_buttons.append(self.end_turn_button)
 
+        self.quit_button = ttk.Button(button_frame, text="Quit Game", command=lambda: self._quit())
+        self.quit_button.pack(side='top', anchor='center', pady=(10, 10))
+        self.mid_buttons.append(self.quit_button)
+
 
         button_frame.pack(side='top', anchor='center', pady=(0, 0), padx=(5,5))
 
@@ -203,6 +211,11 @@ class LocalView (observer.Observer):
         logo.image = logo_image
 
         return logo_frame
+
+    def _quit(self):
+        should_exit = messagebox.askokcancel("Quit?", "Are you sure you want to quit?")
+        if should_exit:
+            self._quit_callback()
 
     def _action_taken(self, action):
 
