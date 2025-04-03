@@ -19,6 +19,7 @@ class MainMenu:
             widget.destroy()
         print("Displaying Main Menu")
 
+        self.root = root
         root.title("Monopoly 1920")
         root.minsize(400,600)
 
@@ -44,7 +45,10 @@ class MainMenu:
         self.join_game.pack(side="top", pady=(10,10))
         self.join_game.state(['disabled'])
 
-        self.local_game = ttk.Button(self.main_frame, text="Quit", command=lambda: root.destroy, padding=(10,2,10,2), style="MainMenu.TButton")
+        self.local_game = ttk.Button(self.main_frame, text="Quit", command=lambda: self._exit(), padding=(10,2,10,2), style="MainMenu.TButton")
         self.local_game.pack(side="bottom", pady=(30,20))
 
         self.main_frame.pack(side="top", fill="y", expand=True, pady=(20,20))
+
+    def _exit(self):
+        self.root.destroy()
