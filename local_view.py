@@ -36,6 +36,12 @@ class LocalView (observer.Observer):
 
     def __init__(self, root):
         super().__init__()
+
+        # Clear root window
+        for widget in root.winfo_children():
+            widget.destroy()
+        root.minsize(1500,900)
+
         # Set-up a simple window
         self.square_images = []
         self.piece_images = []
