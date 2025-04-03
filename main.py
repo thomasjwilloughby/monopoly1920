@@ -6,14 +6,11 @@ import local_view
 
 def main():
 
-    free_parking_payout = 0
-    players_in_jail_collect = True
-    property_auctions = False
     root = tk.Tk()
     root.minsize(1500,900)
 
     view = local_view.LocalView(root)
-    controller = local_controller.LocalController(root)
+    controller = local_controller.LocalController()
 
     root.mainloop()
 

@@ -10,7 +10,7 @@ import json
 class LocalController(observer.Observer):
     """Control the game flow"""
 
-    def __init__(self, root):
+    def __init__(self):
         super().__init__()
 
         csv_path = os.path.join("resources", "data", "board.csv")
