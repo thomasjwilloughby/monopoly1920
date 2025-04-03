@@ -31,14 +31,14 @@ class LocalController(observer.Observer):
 
     def _add_listeners(self):
         """Add listeners to the view"""
-        self.observe("roll", self._roll_action)
-        self.observe("end_turn", self._end_player_turn)
-        self.observe("purchase", self._buy_square)
-        self.observe("mortgage", self._mortgage)
-        self.observe("mortgage_specific", self._mortgage_specific)
-        self.observe("unmortgage", self._unmortgage)
-        self.observe("save", self._save)
-        self.observe("load", self._load)
+        self.observe("roll", "_roll_action")
+        self.observe("end_turn", "_end_player_turn")
+        self.observe("purchase", "_buy_square")
+        self.observe("mortgage", "_mortgage")
+        self.observe("mortgage_specific", "_mortgage_specific")
+        self.observe("unmortgage", "_unmortgage")
+        self.observe("save", "_save")
+        self.observe("load", "_load")
 
     # TODO: Implement
     def _save(self, save_name):

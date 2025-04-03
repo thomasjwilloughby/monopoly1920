@@ -18,6 +18,8 @@ class Game:
     def _start_game(self, type: Literal["local"]):
         print(f"Starting game of type '{type}'")
         self._menu = None
+        for widget in self._root.winfo_children():
+            widget.destroy()
 
         self._view = LocalView(self._root, self._quit_game)
         self._controler = LocalController()

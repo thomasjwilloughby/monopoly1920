@@ -81,10 +81,10 @@ class LocalView (observer.Observer):
 
     def _add_listeners(self):
         """Add listeners to the view"""
-        self.observe("update_players_state", self.update_players_state)
-        self.observe("update_card", self.update_card)
-        self.observe("update_state", self._update_text)
-        self.observe("choice", self._choose)
+        self.observe("update_players_state", "update_players_state")
+        self.observe("update_card", "update_card")
+        self.observe("update_state", "_update_text")
+        self.observe("choice", "_choose")
 
 
     def _create_middle_frame(self):
