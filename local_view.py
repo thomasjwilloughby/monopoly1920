@@ -119,27 +119,22 @@ class LocalView (observer.Observer):
 
         self.purchase_button = ttk.Button(button_frame, text="Purchase", command=lambda: self._action_taken("purchase"))
         self.purchase_button.pack(side='top', anchor='center', pady=(10, 10))
-        self.purchase_button.state(['active'])
         self.mid_buttons.append(self.purchase_button)
 
         self.mortgage_button = ttk.Button(button_frame, text="Mortgage", command=lambda: self._action_taken("mortgage"))
         self.mortgage_button.pack(side='top', anchor='center', pady=(10, 10))
-        self.mortgage_button.state(['active'])
         self.mid_buttons.append(self.mortgage_button)
 
         self.unmortgage_button = ttk.Button(button_frame, text="Unmortgage", command=lambda: self._action_taken("unmortgage"))
         self.unmortgage_button.pack(side='top', anchor='center', pady=(10, 10))
-        self.unmortgage_button.state(['active'])
         self.mid_buttons.append(self.unmortgage_button)
 
         self.bankrupt_button = ttk.Button(button_frame, text="Go Bankrupt", command=lambda: self._action_taken("bankrupt"))
         self.bankrupt_button.pack(side='top', anchor='center', pady=(10, 10))
-        self.bankrupt_button.state(['active'])
         self.mid_buttons.append(self.bankrupt_button)
 
         self.end_turn_button = ttk.Button(button_frame, text="End Turn", command=lambda: self._action_taken("end_turn"))
         self.end_turn_button.pack(side='top', anchor='center', pady=(10, 10))
-        self.end_turn_button.state(['active'])
         self.mid_buttons.append(self.end_turn_button)
 
 
