@@ -22,6 +22,7 @@ class MainMenu:
         self.root = root
         root.title("Monopoly 1920")
         root.minsize(400,600)
+        root.geometry("400x600")
 
         self.main_frame = ttk.Frame(root)
 
