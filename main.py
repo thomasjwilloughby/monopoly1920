@@ -6,6 +6,7 @@ from game import Game
 def main():
 
     root = tk.Tk()
+    root.attributes('-type', 'dialog')
 
     game = Game(root)
 
