@@ -34,7 +34,7 @@ class MainMenu:
         self.button_style.configure('MainMenu.TButton', font=("TkDefaultFont", 16))
 
         self.local_game = ttk.Button(self.main_frame, text="Local Game", command=lambda: start_game("local"), padding=(10,2,10,2), style="MainMenu.TButton")
-        self.local_game.pack(side="top", pady=(10,10))
+        self.local_game.pack(side="top", pady=(40,10))
 
         self.host_game= ttk.Button(self.main_frame, text="Host Multiplayer", command=lambda: start_game("multi_host"), padding=(10,2,10,2), style="MainMenu.TButton")
         self.host_game.pack(side="top", pady=(10,10))
@@ -45,6 +45,6 @@ class MainMenu:
         self.join_game.state(['disabled'])
 
         self.local_game = ttk.Button(self.main_frame, text="Quit", command=lambda: root.destroy, padding=(10,2,10,2), style="MainMenu.TButton")
-        self.local_game.pack(side="top", pady=(30,10))
+        self.local_game.pack(side="bottom", pady=(30,20))
 
-        self.main_frame.pack(side="top", fill="y",pady=(20,20))
+        self.main_frame.pack(side="top", fill="y", expand=True, pady=(20,20))
