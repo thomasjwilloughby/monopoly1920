@@ -4,8 +4,7 @@ import tkinter as tk
 import local_controller
 import local_view
 
-'''launch the GUI'''
-if __name__ == '__main__':
+def main():
 
     free_parking_payout = 0
     players_in_jail_collect = True
@@ -17,3 +16,10 @@ if __name__ == '__main__':
     controller = local_controller.LocalController(root)
 
     root.mainloop()
+
+
+
+
+'''launch the GUI'''
+if __name__ == '__main__':
+    main()
