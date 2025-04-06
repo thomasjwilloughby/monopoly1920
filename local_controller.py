@@ -57,7 +57,7 @@ class LocalController(observer.Observer):
         """Load the game from disk"""
         save_game = {}
 
-        save_path = os.path.join("saves", save_name)
+        save_path = os.path.join("saves", save_name+".json")
         with open(save_path, 'r') as file:
             save_game = json.load(file)
         

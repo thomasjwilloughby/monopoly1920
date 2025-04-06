@@ -6,6 +6,7 @@ from tkinter import ttk
 from tkinter import messagebox
 from typing import Callable
 import observer
+from save_menu import SaveMenu
 
 import PIL.Image
 import PIL.ImageTk
@@ -23,13 +24,6 @@ def get_board_square_images():
 def get_player_piece_images() -> list[str]:
     path = os.path.join("resources", "images", "pieces")
     return [os.path.join(path, img) for img in os.listdir(path)]
-
-def get_save_files() -> list[str]:
-    saves_path = os.path.join("saves")
-    if not os.path.isdir(saves_path):
-        os.mkdir(saves_path)
-
-    return os.listdir(saves_path)
 
 class LocalView (observer.Observer):
     """Class to create the GUI for the Monopoly game"""
@@ -193,13 +187,19 @@ class LocalView (observer.Observer):
         self.player_frame = self._create_players_frame(msg_frame)
         self.player_frame.pack(side='top', padx=(10,10), fill='both')
 
-        self.save_menu_button = ttk.Button(msg_frame, text="Save/Load Game", command=lambda: self._save_menu())
+        self.save_menu_button = ttk.Button(msg_frame, text="Save/Load Game", command=lambda: self._open_save_menu())
         self.save_menu_button.pack(side='top', padx=(10,10), pady=(40,5))
 
         self.text_box = tk.Text(msg_frame, width=60, height=10, background='black', foreground='white')
         self.text_box.pack(side='bottom', padx=(10,10))
 
         return msg_frame
+
+    def _open_save_menu(self):
+        self.save_menu = SaveMenu(self.root, self._close_save_menu_callback)
+
+    def _close_save_menu_callback(self):
+        self.save_menu = None
 
     def _create_logo_frame(self):
         """Create the frame at the top of the screen to display the logo"""
@@ -312,55 +312,6 @@ class LocalView (observer.Observer):
             self.canvas.moveto(img_id, x, y)
             self.canvas.tag_raise(img_id)
 
-
-    def _save_menu(self):
-        self.save_menu = tk.Toplevel(self.root)
-
-        self.save_menu.title("Save/Load Game")
-        self.save_menu.geometry("400x300")
-        self.save_menu.resizable(True, True)
-        self.save_menu.attributes('-type', 'dialog')
-        self.save_menu.minsize(500,300)
-
-        save_load_frame = ttk.Frame(self.save_menu, relief='raised', borderwidth = 3)
-
-        file_name_lable = ttk.Label(save_load_frame, text="Save File: ")
-        file_name_lable.pack(side="left", padx=(5,5), pady=(8,8))
-
-        file_name = ttk.Entry(save_load_frame)
-        file_name.pack(side="left", padx=(5,5), pady=(8,8), expand=True, fill="x")
-
-        load_button = ttk.Button(save_load_frame, text="Load")
-        load_button.pack(side="right", padx=(5,5))
-        save_button = ttk.Button(save_load_frame, text="Save")
-        save_button.pack(side="right", padx=(15,5))
-
-        save_load_frame.pack(side="top", pady=(10,10), padx=(10,10), anchor="n", fill="x", expand=True)
-
-        files = tk.Listbox(self.save_menu, selectmode="single")
-
-        def onselect(evt):
-            w = evt.widget
-            index = int(w.curselection()[0])
-            value = w.get(index)
-            file_name.delete(0, len(file_name.get()))
-            file_name.insert(0, value)
-
-        files.bind('<<ListboxSelect>>', onselect)
-
-        def update_entries():
-            entries = get_save_files()
-            print(f"{entries=}")
-            def add_entry(list, entry):
-                list.insert(list.size(), entry)
-            [add_entry(files, entry.removesuffix(".json")) for entry in entries]
-
-        update_entries()
-
-        save_button.configure(command=lambda: observer.Event("save", file_name.get()+".json"))
-        load_button.configure(command=lambda: observer.Event("load", file_name.get()+".json"))
-
-        files.pack(side="top", fill="both", anchor="s", expand=True, pady=(5,15), padx=(20,20), after=save_load_frame)
 
 
     def _choose(self, choices):
