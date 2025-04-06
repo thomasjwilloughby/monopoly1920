@@ -1,5 +1,5 @@
 import os
-from tkinter import Tk, font
+from tkinter import Tk
 from typing import Callable
 
 import tkinter as tk
@@ -8,7 +8,6 @@ import tkinter as tk
 from local_view import ttk
 
 from PIL import Image, ImageTk
-import PIL
 
 
 class MainMenu:

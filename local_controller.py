@@ -2,7 +2,6 @@ import os
 import random
 import gameboard
 import player as plr # avoid naming conflict with the player module
-import gamesquare
 import observer
 
 import json
