@@ -8,9 +8,11 @@
     - [x] Dialog
     - [x] Actual save load
 - [ ] Menu
-    - [ ] Main Menu
-    - [ ] House Rules?
+    - [x] Main Menu
+    - [ ] Options
+        - [ ] House Rules?
     - [ ] Online Multiplayer? (Unlikely)
+- [ ] Sound
 
 # Time
 
