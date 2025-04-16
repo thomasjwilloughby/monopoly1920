@@ -1,3 +1,5 @@
+from __future__ import annotations
+
 from typing import Callable, Self
 import weakref
 #the following code draws inspiration
@@ -42,7 +44,7 @@ class Observer:
         return self._observables
 
     @staticmethod
-    def get_observers():
+    def get_observers() -> list[weakref.ref[Observer]]:
         """Function to get all observers"""
         return Observer._observers
 
@@ -58,8 +60,10 @@ class Event:
 
     def notify(self):
         """Function to fire the event"""
-        for observer in Observer.get_observers():
-            observer = observer()
+        for observer_ref in Observer.get_observers():
+            observer = observer_ref()
+            if observer == None:
+                continue
             if self.__name in observer.observables.keys():
                 callback: Callable = getattr(observer, observer.observables[self.__name])
                 callback(self.__data)
