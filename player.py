@@ -13,13 +13,13 @@ class Player:
 
     def __init__(self, id, name, money):
         """Constructor for the Player class"""
-        self.__id = id
-        self.__name = name
-        self.__money = money
-        self.__properties = []
-        self.__board_position = 0
-        self.__doubles_count = 0
-        self.__bankrupt_declared = False
+        self.__id: int = id
+        self.__name: str = name
+        self.__money: int = money
+        self.__properties: list[gamesquare.GameSquare] = []
+        self.__board_position: int = 0
+        self.__doubles_count: int = 0
+        self.__bankrupt_declared: bool = False
 
         #big numbers are lucky, negative numbers are unlucky
         self.__luck = 0
