@@ -43,7 +43,7 @@ class MainMenu:
 
         self.join_game = ttk.Button(self.main_frame, text="Join Multiplayer", command=lambda: start_game("multi_join"), padding=(10,2,10,2), style="MainMenu.TButton")
         self.join_game.pack(side="top", pady=(10,10))
-        self.join_game.state(['disabled'])
+        # self.join_game.state(['disabled'])
 
         self.local_game = ttk.Button(self.main_frame, text="Quit", command=lambda: self._exit(), padding=(10,2,10,2), style="MainMenu.TButton")
         self.local_game.pack(side="bottom", pady=(30,20))
