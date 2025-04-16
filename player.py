@@ -25,7 +25,7 @@ class Player:
         self.__luck = 0
 
         #add a Data structure to track mortgaging order
-        self.__mortgaging_order = []
+        self.__mortgaging_order: list[gamesquare.GameSquare] = []
 
     def save(self) -> dict:
         save = {}
