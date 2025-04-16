@@ -50,10 +50,11 @@ class Player:
         self.__bankrupt_declared = save['bankrupt_declared']
         self.__luck = save['luck']
 
-        def get_property(name):
+        def get_property(name: str) -> gamesquare.GameSquare:
             for p in board.properties:
                 if p.name == name:
                     return p
+            raise ValueError("No Property with name '{name}' exists")
 
         self.__mortgaging_order = [get_property(name) for name in save['mortgage_order']]
         self.__properties = [get_property(name) for name in save['properties']]

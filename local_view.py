@@ -145,7 +145,8 @@ class LocalView (observer.Observer):
         self.card.pack(side='bottom', anchor='n', padx=100, pady=(100, 0))
         f.pack(side='right')
 
-        self.card.image = card_image
+        self.card.image = card_image # type: ignore
+        
 
 
 
@@ -208,7 +209,7 @@ class LocalView (observer.Observer):
         logo_image = tk.PhotoImage(file=r"resources/images/monopoly_logo.png")
         logo = ttk.Label(logo_frame, image=logo_image)
         logo.pack(side='top', anchor='n')
-        logo.image = logo_image
+        logo.image = logo_image # type: ignore
 
         return logo_frame
 
@@ -248,16 +249,16 @@ class LocalView (observer.Observer):
             #self.text_box.delete(1.0, tk.END)
             observer.Event("end_turn", self._clear_text)
 
-    def update_state(self, state, text):
-        """Function to update the state of the game"""
-        if state == "roll":
-            self._await_roll(text)
-        elif state == "purchase":
-            self._await_purchase()
-        elif state == "moves":
-            self._await_moves()
-        elif state == "moves_or_bankrupt":
-            self._await_moves_or_bankrupt()
+    # def update_state(self, state, text):
+    #     """Function to update the state of the game"""
+    #     if state == "roll":
+    #         self._await_roll(text)
+    #     elif state == "purchase":
+    #         self._await_purchase()
+    #     elif state == "moves":
+    #         self._await_moves()
+    #     elif state == "moves_or_bankrupt":
+    #         self._await_moves_or_bankrupt()
 
     def purchase(self):
         observer.Event("purchase", None)
