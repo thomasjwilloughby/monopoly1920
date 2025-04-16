@@ -1,4 +1,5 @@
 import player
+from player import Player
 import gamesquare
 
 class GameBoard:
@@ -22,15 +23,15 @@ class GameBoard:
         "groupmembers": 15
     }
 
-    def __init__(self, properties_path, players ):
-        self.__properties = self._load_game_board(properties_path)
+    def __init__(self, properties_path, players: list[Player]):
+        self.__properties: list[gamesquare.GameSquare] = self._load_game_board(properties_path)
 
-        self.__players = players
+        self.__players: list[Player] = players
 
-        self.__total_turns = 0
+        self.__total_turns: int = 0
 
         # set the current player
-        self.__current_player = self.__players.pop(0)
+        self.__current_player: Player = self.__players.pop(0)
 
     def save(self) -> dict[str, list | dict | int | str]:
         all_players = [self.__current_player] + self.__players
