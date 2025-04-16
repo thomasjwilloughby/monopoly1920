@@ -55,7 +55,7 @@ class Player:
                 if p.name == name:
                     return p
 
-        self.__mortgaging_order = [get_property(name) for name in save['mortgage_ortder']]
+        self.__mortgaging_order = [get_property(name) for name in save['mortgage_order']]
         self.__properties = [get_property(name) for name in save['properties']]
 
     def to_dict(self):
