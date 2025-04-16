@@ -1,6 +1,7 @@
 import os
 import random
 import gameboard
+from gamesquare import Player
 import player as plr # avoid naming conflict with the player module
 import observer
 
@@ -14,13 +15,13 @@ class LocalController(observer.Observer):
 
         csv_path = os.path.join("resources", "data", "board.csv")
         players = self._create_players(3)
-        self._gameboard = gameboard.GameBoard(csv_path, players)
+        self._gameboard: gameboard.GameBoard = gameboard.GameBoard(csv_path, players)
 
         self._add_listeners()
 
-        self.__dice_rolled = False
+        self.__dice_rolled: bool = False
 
-        self.__roll_count = 0
+        self.__roll_count: int = 0
 
         observer.Event("update_state", f"{self._gameboard.get_current_player().name}'s turn")
         observer.Event("update_players_state", self._gameboard.to_dicts())
@@ -40,7 +41,7 @@ class LocalController(observer.Observer):
         self.observe("load", "_load")
 
     # TODO: Implement
-    def _save(self, save_name):
+    def _save(self, save_name: str):
         """Save the game to disk"""
 
         save_game = {}
@@ -52,7 +53,7 @@ class LocalController(observer.Observer):
             json.dump(save_game, file)
 
     # TODO: Implement
-    def _load(self, save_name):
+    def _load(self, save_name: str):
         """Load the game from disk"""
         save_game = {}
 
@@ -74,7 +75,7 @@ class LocalController(observer.Observer):
         """Test the observer pattern"""
         print("observed event roll")
 
-    def _create_players(self, num_players):
+    def _create_players(self, num_players: int) -> list[Player]:
         """Create num_players players and return a list of them"""
         players = []
         for i in range(num_players):
