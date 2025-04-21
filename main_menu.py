@@ -1,10 +1,11 @@
+from __future__ import annotations
+
+from typing import TYPE_CHECKING
+if TYPE_CHECKING:
+    from game import Game
+
 import os
-from tkinter import Tk
-from typing import Callable
-
 import tkinter as tk
-
-
 from local_view import ttk
 
 from PIL import Image, ImageTk
@@ -12,13 +13,14 @@ from PIL import Image, ImageTk
 
 class MainMenu:
 
-    def __init__(self, root: Tk, start_game: Callable):
+    def __init__(self, root: tk.Tk, game: Game):
         # Clear root window
         for widget in root.winfo_children():
             widget.destroy()
         print("Displaying Main Menu")
 
         self.root = root
+        self.game = game
         root.title("Monopoly 1920")
         root.minsize(400,600)
         root.geometry("400x600")
@@ -34,14 +36,14 @@ class MainMenu:
         self.button_style = ttk.Style()
         self.button_style.configure('MainMenu.TButton', font=("TkDefaultFont", 16))
 
-        self.local_game = ttk.Button(self.main_frame, text="Local Game", command=lambda: start_game("local"), padding=(10,2,10,2), style="MainMenu.TButton")
+        self.local_game = ttk.Button(self.main_frame, text="Local Game", command=lambda: self.game._start_game("local"), padding=(10,2,10,2), style="MainMenu.TButton")
         self.local_game.pack(side="top", pady=(40,10))
 
-        self.host_game= ttk.Button(self.main_frame, text="Host Multiplayer", command=lambda: start_game("multi_host"), padding=(10,2,10,2), style="MainMenu.TButton")
+        self.host_game= ttk.Button(self.main_frame, text="Host Multiplayer", command=lambda: self.game.open_menu("multi_host"), padding=(10,2,10,2), style="MainMenu.TButton")
         self.host_game.pack(side="top", pady=(10,10))
         self.host_game.state(['disabled'])
 
-        self.join_game = ttk.Button(self.main_frame, text="Join Multiplayer", command=lambda: start_game("multi_join"), padding=(10,2,10,2), style="MainMenu.TButton")
+        self.join_game = ttk.Button(self.main_frame, text="Join Multiplayer", command=lambda: self.game.open_menu("multi_join"), padding=(10,2,10,2), style="MainMenu.TButton")
         self.join_game.pack(side="top", pady=(10,10))
         # self.join_game.state(['disabled'])
 
